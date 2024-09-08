@@ -1,4 +1,4 @@
-package ejerciciosppo;
+package EjerciciosPPO;
 
 import java.util.Scanner;
 
@@ -12,14 +12,14 @@ public class Llantas {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        double PrecioPorLLanta
+        double PrecioPorLLanta 
         double totalAPagar
         System.out.println("Tenemos promocion en nuestras llantas");
         System.out.println("Si compras menos de 5 llantas, el precio sera de 100$ cada una! ");
         System.out.println("Si compras entre 5 y 10 su precio baja a 75$ cada una! ");
         System.out.println("Si compras mas de 10 quedan a mitad de precio (50$) cada una! ");
         System.out.println("Ingrese el numero de llantas a pagar: ");
-        int numeroLlantas = Scanner.nextInt();
+        int numeroLlantas = sc.nextInt();
         if (numeroLlantas < 5) {
             PrecioPorLLanta = 100;
         } else if ((numeroLlantas >= 5) && (numeroLlantas <= 10)) {
@@ -29,9 +29,9 @@ public class Llantas {
         }
         totalAPagar = PrecioPorLLanta * numeroLlantas
         System.out.println("El precio por llanta es $ " + PrecioPorLLanta);
-        System.out.println("El total a pagar es por" + numeroLlantas + "llantas es: $" + totalAPagar;
+        System.out.println("El total a pagar es por" + numeroLlantas + "llantas es: $" + totalAPagar
         );
-      Scanner.close();
+        Scanner.close();
 
     }
 
