@@ -16,7 +16,8 @@ public class EjercicioTienda {
 
     public static void main(String[] args) {
 
-        try (Scanner sc = new Scanner(System.in)) {
+        Scanner sc = new Scanner(System.in);
+        {
             final double PRECIO_COMPUTADORA = 500.0;
             double descuento = 0.0;
             double totalPagar;
@@ -48,6 +49,7 @@ public class EjercicioTienda {
             System.out.println("Precio sin descuento: $" + totalSinDescuento);
             System.out.println("El Descuento aplicado fue del: " + (descuento * 100) + "%");
             System.out.println("El total a pagar: $" + totalPagar);
+
         }
 
     }
