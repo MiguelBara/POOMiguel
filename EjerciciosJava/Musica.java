@@ -1,4 +1,4 @@
-package EjerciciosPPO;
+package EjerciciosJava;
 
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ public class Musica {
         // Ingreso del precio sin IVA
         System.out.println("Ingrese el precio sin IVA del producto: ");
         double precioSinIva = sc.nextDouble(); // Cambie a double para manejar decimales
-        sc.nextLine(); // lee la siguiente línea  después de leer un número
+        sc.nextLine(); // lee la siguiente línea después de leer un número
 
         // Ingreso de la marca del producto
         System.out.println("Ingrese la marca del producto: ");
@@ -32,7 +32,8 @@ public class Musica {
             precioConDescuento *= 0.9; // Multiplico por 0.9 para aplicar el descuento del 10%
         }
 
-        // Aplica el descuento del 5% adicional si la marca "nosy", el marca.equalsIgnoreCase es pa que no importe mayusculas o minusculas
+        // Aplica el descuento del 5% adicional si la marca "nosy", el
+        // marca.equalsIgnoreCase es pa que no importe mayusculas o minusculas
         if (marca.equalsIgnoreCase("NOSY")) {
             precioConDescuento *= 0.95; // Multiplica por 0.95 para aplicar el descuento del 5%
         }

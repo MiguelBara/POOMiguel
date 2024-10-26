@@ -8,7 +8,7 @@ a cinco pero menos de diez se le otorga un 20% de descuento; y si son 10 o más 
 40% de descuento. El precio de cada computadora es de U$500.
 
  */
-package EjerciciosPPO;
+package EjerciciosJava;
 
 import java.util.Scanner;
 
@@ -22,7 +22,8 @@ public class EjercicioTienda {
             double descuento = 0.0;
             double totalPagar;
 
-            System.out.println("Hay descuentos para nuestras computadoras!, este descuento dependera de cuantos equipos haya comprado!");
+            System.out.println(
+                    "Hay descuentos para nuestras computadoras!, este descuento dependera de cuantos equipos haya comprado!");
 
             System.out.println("Si has comprado menos de 5, tendras un 10% de descuento!");
 

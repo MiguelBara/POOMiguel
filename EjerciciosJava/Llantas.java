@@ -1,4 +1,4 @@
-package EjerciciosPPO;
+package EjerciciosJava;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ public class Llantas {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        double precioPorLlanta = 0;  // Inicializamos la variable
+        double precioPorLlanta = 0; // Inicializamos la variable
         double totalAPagar;
         System.out.println("Tenemos promoción en nuestras llantas");
         System.out.println("Si compras menos de 5 llantas, el precio será de 100$ cada una! ");
@@ -18,7 +18,7 @@ public class Llantas {
         // Condicionales corregidos
         if (numeroLlantas < 5) {
             precioPorLlanta = 100;
-        } else if (numeroLlantas >= 5 && numeroLlantas <= 10) {  // Condición corregida
+        } else if (numeroLlantas >= 5 && numeroLlantas <= 10) { // Condición corregida
             precioPorLlanta = 75;
         } else if (numeroLlantas > 10) {
             precioPorLlanta = 50;
@@ -29,7 +29,8 @@ public class Llantas {
 
         // Imprimir resultados
         System.out.println("El precio por llanta es $ " + precioPorLlanta);
-        System.out.println("El total a pagar por " + numeroLlantas + " llantas es: $" + totalAPagar); // Espacio añadido entre palabras
+        System.out.println("El total a pagar por " + numeroLlantas + " llantas es: $" + totalAPagar); // Espacio añadido
+                                                                                                      // entre palabras
 
     }
 }

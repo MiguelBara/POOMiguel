@@ -1,4 +1,4 @@
-package EjerciciosPPO;
+package EjerciciosJava;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ public class matriz1 {
         Scanner sc = new Scanner(System.in);
         double[][] matriz = new double[6][100];
         double tipoServicio = 0, tipoProducto = 0, pesoTrans = 0, tiempoPerma = 0, largoCamion = 0, costoParquea = 0;
-//ingreso manual
+        // ingreso manual
         for (int nCamion = 0; nCamion < matriz.length; nCamion++) {
             System.out.println("Servicio a realizar (1 Descarga / 2 Carga: )");
             tipoServicio = sc.nextDouble();

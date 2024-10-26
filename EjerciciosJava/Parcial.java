@@ -1,4 +1,4 @@
-package EjerciciosPPO;
+package EjerciciosJava;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -55,8 +55,10 @@ public class Parcial {
         System.out.println("Sábado: " + matriz[numHabitacion - 1][5]);
         System.out.println("Domingo: " + matriz[numHabitacion - 1][6]);
 
-        double promedioSemana = (matriz[numHabitacion - 1][0] + matriz[numHabitacion - 1][1] + matriz[numHabitacion - 1][2] + matriz[numHabitacion - 1][3]) / 4.0;
-        double promedioFinDeSemana = (matriz[numHabitacion - 1][4] + matriz[numHabitacion - 1][5] + matriz[numHabitacion - 1][6]) / 3.0;
+        double promedioSemana = (matriz[numHabitacion - 1][0] + matriz[numHabitacion - 1][1]
+                + matriz[numHabitacion - 1][2] + matriz[numHabitacion - 1][3]) / 4.0;
+        double promedioFinDeSemana = (matriz[numHabitacion - 1][4] + matriz[numHabitacion - 1][5]
+                + matriz[numHabitacion - 1][6]) / 3.0;
 
         System.out.printf("Promedio entre semana: %.2f%n", promedioSemana);
         System.out.printf("Promedio fin de semana: %.2f%n", promedioFinDeSemana);

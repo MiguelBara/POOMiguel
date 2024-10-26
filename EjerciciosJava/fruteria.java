@@ -1,4 +1,4 @@
-package EjerciciosPPO;
+package EjerciciosJava;
 
 import java.util.Scanner;
 
