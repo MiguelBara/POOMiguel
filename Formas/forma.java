@@ -14,6 +14,11 @@ public class forma {
         this.posicionY = posicionY;
     }
 
+    public double calcularArea() {
+        return 0;
+
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -45,12 +50,5 @@ public class forma {
     public void setColor(String color) {
         this.color = color;
     }
-
-    public abstract double calcularArea();
-
-    public double calcularPerimetro() {
-        throw new UnsupportedOperationException("El método calcularPerimetro no está implementado en la clase abstracta Forma");
-
-
 
 }
