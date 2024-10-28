@@ -33,19 +33,21 @@ public class Programador extends Empleado {
     }
 
     // Getters y setters
+
+    public int getLineasDeCodigoPorHora() {
+        return lineasDeCodigoPorHora;
+    }
+
     public void setLineasDeCodigoPorHora(int lineasDeCodigoPorHora) {
         this.lineasDeCodigoPorHora = lineasDeCodigoPorHora;
     }
 
-    public int getLineasDeCodigoPorHora() {
-        return lineasDeCodigoPorHora;
+    public String getLenguajeDominante() {
+        return lenguajeDominante;
     }
 
     public void setLenguajeDominante(String lenguajeDominante) {
         this.lenguajeDominante = lenguajeDominante;
     }
 
-    public String getLenguajeDominante() {
-        return lenguajeDominante;
-    }
 }
