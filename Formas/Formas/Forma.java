@@ -1,24 +1,25 @@
 package Formas;
 
-public class forma {
-
+public class Forma {
     private String nombre;
     private double posicionX;
     private double posicionY;
     private String color;
 
-    public forma(String color, String nombre, double posicionX, double posicionY) {
-        this.color = color;
+    // Constructor
+    public Forma(String nombre, double posicionX, double posicionY, String color) {
         this.nombre = nombre;
         this.posicionX = posicionX;
         this.posicionY = posicionY;
+        this.color = color;
     }
 
+    // Método para calcular el área (por defecto retorna 0, debe ser sobreescrito)
     public double calcularArea() {
         return 0;
-
     }
 
+    // Getters y Setters
     public String getNombre() {
         return nombre;
     }
@@ -50,5 +51,4 @@ public class forma {
     public void setColor(String color) {
         this.color = color;
     }
-
 }

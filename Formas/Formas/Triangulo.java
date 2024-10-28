@@ -1,21 +1,23 @@
 package Formas;
 
-public class triangulo extends forma {
-
+class Triangulo extends Forma {
     private double base;
     private double altura;
 
-    public triangulo(double altura, double base, String color, String nombre, double posicionX, double posicionY) {
-        super(color, nombre, posicionX, posicionY);
-        this.altura = altura;
+    // Constructor
+    public Triangulo(String nombre, double posicionX, double posicionY, String color, double base, double altura) {
+        super(nombre, posicionX, posicionY, color);
         this.base = base;
+        this.altura = altura;
     }
 
+    // Implementación del método calcularArea
     @Override
     public double calcularArea() {
         return (base * altura) / 2;
     }
 
+    // Getters y Setters
     public double getBase() {
         return base;
     }
@@ -31,5 +33,4 @@ public class triangulo extends forma {
     public void setAltura(double altura) {
         this.altura = altura;
     }
-
 }
