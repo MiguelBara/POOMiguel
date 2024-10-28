@@ -29,7 +29,7 @@ public class Prueba {
         System.out.println(cuentaAhorro);
 
         // Intentar retirar más de lo permitido
-        System.out.println("\nIntentando retirar más de lo permitido...");
+        System.out.println("\nNo se puede retirar esa cantidad ");
         cuentaCorriente.retirar(600); // No debe funcionar
         cuentaAhorro.retirar(1200); // No debe funcionar
 
