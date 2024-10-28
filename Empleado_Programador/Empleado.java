@@ -18,11 +18,7 @@ public class Empleado {
 
     // Constructor sin parametrizar
     public Empleado() {
-        this.nombre = "";
-        this.dni = "";
-        this.edad = 0;
-        this.casado = false;
-        this.salario = 0.0;
+
     }
 
     // Método para clasificar según la edad
