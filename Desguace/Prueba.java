@@ -9,9 +9,9 @@ public class Prueba {
         camiones[2] = new Camion(30000, "MarcaC", 25, 4);
 
         // Mostrar el precio de venta de todos los camiones
-        System.out.println("Precios de venta de los camiones:");
+        System.out.println("Precios de venta de los camiones:  ");
         for (Vehiculo camion : camiones) {
-            System.out.println(camion.precioVenta());
+            System.out.println("$ " + camion.precioVenta());
         }
 
         // array de 2 furgonetas
@@ -20,9 +20,9 @@ public class Prueba {
         furgonetas[1] = new Furgoneta(18000, "MarcaE", 8);
 
         // Mostrar el precio de venta de todas las furgonetas
-        System.out.println("Precios de venta de las furgonetas:");
+        System.out.println("Precios de venta de las furgonetas: ");
         for (Vehiculo furgoneta : furgonetas) {
-            System.out.println(furgoneta.precioVenta());
+            System.out.println("$ " + furgoneta.precioVenta());
         }
 
         // MEJORA 1: Unir los dos arrays en un único array
@@ -31,9 +31,9 @@ public class Prueba {
         System.arraycopy(furgonetas, 0, vehiculos, camiones.length, furgonetas.length);
 
         // Mostrar el precio de venta de todos los vehículos
-        System.out.println("Precios de venta de todos los vehículos:");
+        System.out.println("Precios de venta de todos los vehículos:  ");
         for (Vehiculo vehiculo : vehiculos) {
-            System.out.println(vehiculo.precioVenta());
+            System.out.println("$ " + vehiculo.precioVenta());
         }
     }
 }
