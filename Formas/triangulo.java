@@ -31,7 +31,5 @@ public class triangulo extends forma {
     public void setAltura(double altura) {
         this.altura = altura;
     }
-    
-    
 
 }

@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class clinica {
 
     public static void main(String[] args) {
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Ingrese la cantidad total de nacimientos: ");
@@ -34,4 +35,5 @@ public class clinica {
         System.out.println("Cantidad de bebés masculinos: " + contMasculino);
         System.out.println("Cantidad de bebés femeninos: " + contFemenino);
     }
+
 }
