@@ -39,7 +39,8 @@ public class Prueba {
         coche2.setDniTitular("11223344C");
         coche2.setMatricula("DEF5678");
 
-        System.out.println("\nAntes de comprar:");
+        System.out.println("\nAntes de comprar:"); // /n entre comillas es para saltar una linea dentro del mismo
+                                                   // mensaje
         System.out.println("DNI del titular del coche 1: " + coche1.getDniTitular());
         System.out.println("DNI del titular del coche 2: " + coche2.getDniTitular());
 
