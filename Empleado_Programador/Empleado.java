@@ -3,11 +3,11 @@ package Empleado_Programador;
 public class Empleado {
     private String nombre;
     private String dni;
-    private int edad; // Rango entre 18 y 45 años
+    private int edad; // entre 18 y 45 años
     private boolean casado;
     private double salario;
 
-    // Constructor con todos los parámetros
+    // Constructor parametrizado
     public Empleado(String nombre, String dni, int edad, boolean casado, double salario) {
         this.nombre = nombre;
         this.dni = dni;
@@ -16,7 +16,7 @@ public class Empleado {
         this.salario = salario;
     }
 
-    // Constructor sin parámetros
+    // Constructor sin parametrizar
     public Empleado() {
         this.nombre = "";
         this.dni = "";
@@ -36,7 +36,7 @@ public class Empleado {
         }
     }
 
-    // Método toString
+    // Método toString para imprimir los datos de un empleado
     @Override
     public String toString() {
         return "Nombre: " + nombre + "\n" +
@@ -46,7 +46,7 @@ public class Empleado {
                 "Salario: " + salario;
     }
 
-    // Método para subir el salario
+    // Método subir el salario
     public void subirSalario(int x) {
         salario += salario * x / 100.0;
     }
@@ -63,5 +63,4 @@ public class Empleado {
         return edad;
     }
 
-    // Otros getters y setters pueden ser añadidos según sea necesario
 }
