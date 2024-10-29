@@ -28,6 +28,6 @@ public class Prueba {
 
         System.out.println("Número de empleados instanciados: " + Empleado.getNumeroEmpleados());
 
-        scanner.close(); // Cerrar el scanner
+        scanner.close();
     }
 }
