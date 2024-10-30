@@ -81,9 +81,9 @@ public class Prueba {
                 String tipoCongelada = scanner.nextLine().toLowerCase();
 
                 if (tipoCongelada.equals("entera")) {
+
                     System.out.print("¿Viene en bandeja? (sí/no): ");
-                    boolean enBandeja = scanner.nextLine().equalsIgnoreCase("sí"); // equalsIngoreCase ignora si es
-                                                                                   // mayusculas o minusculas
+                    boolean enBandeja = scanner.nextLine().equalsIgnoreCase("sí");
                     almacen.agregarProducto(new CarneCongeladaPiezaEntera(nombre, peso, precioKilo, origen,
                             empresaDistribuidora, enBandeja));
                 } else if (tipoCongelada.equals("troceada")) {
