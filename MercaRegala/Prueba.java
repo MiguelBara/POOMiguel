@@ -3,7 +3,7 @@ package MercaRegala;
 import java.util.List;
 import java.util.Scanner;
 
-public class Mercaregala {
+public class Prueba {
     public static void main(String[] args) {
         Almacen almacen = new Almacen();
         Scanner scanner = new Scanner(System.in);

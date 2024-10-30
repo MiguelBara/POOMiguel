@@ -1,6 +1,6 @@
 package MercaRegala;
 
-public interface Producto {
+public interface ProductoMercaRegala {
     double calcularPrecio();
 
     String getNombre();
