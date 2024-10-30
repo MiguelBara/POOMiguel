@@ -1,7 +1,5 @@
 package Aeropuertos;
 
-import java.util.List;
-
 public class Biberia {
     public static void main(String[] args) {
         // Crear aeropuertos
