@@ -1,92 +1,81 @@
 package EjercicioParcial;
 
-public class Garaje implements IGaraje {
-    private Vehiculo[] espacios; // Array de vehículos en el garaje
-    private static final int NUM_ESPACIOS = 10; // Número máximo de espacios en el garaje
-    private static final double PORCENTAJE_MAXIMO_MOTOS = 0.8; // Porcentaje máximo de espacios ocupados por motos
+public class Garaje {
+    private Vehiculo[] espacios;
+    private static final int MAX_ESPACIOS = 10; // Constante que define el número máximo de espacios
+    private int ocupados; // Contador de los espacios ocupados
 
-    // Constructor que inicializa el array de vehículos
+    // Constructor
     public Garaje() {
-        espacios = new Vehiculo[NUM_ESPACIOS]; // Inicializa el array con el tamaño máximo
+        this.espacios = new Vehiculo[MAX_ESPACIOS];
+        this.ocupados = 0;
     }
 
-    // Método para alquilar un espacio a un vehículo
+    // Método para alquilar un espacio
     public boolean alquilarEspacio(Vehiculo vehiculo) {
-        // Verifica que no se exceda el número de espacios y que el vehículo tenga
-        // matrícula
-        if (espaciosCompleto() || vehiculo.getPlaca() == null) {
-            return false; // No se puede alquilar el espacio
+        if (ocupados >= MAX_ESPACIOS || vehiculo.getPlaca() == null) {
+            return false; // No se pueden alquilar más espacios o si la matrícula es nula
         }
 
-        int countMotos = calcularOcupacionPorTipoVehiculo(new Moto("", 0, 0, false));
-        double porcentajeMotos = (double) countMotos / NUM_ESPACIOS;
+        int motosContador = 0;
+        for (int i = 0; i < ocupados; i++) {
+            if (espacios[i] instanceof Moto) {
+                motosContador++;
+            }
+        }
 
-        // Verifica que no se exceda el 80% de espacios ocupados por motos
-        if (porcentajeMotos < PORCENTAJE_MAXIMO_MOTOS || !(vehiculo instanceof Moto)) {
-            for (int i = 0; i < NUM_ESPACIOS; i++) {
-                if (espacios[i] == null) { // Encuentra un espacio vacío
-                    espacios[i] = vehiculo; // Alquila el espacio al vehículo
-                    return true; // Alquiler exitoso
+        // Comprobar que no haya más del 80% de los espacios ocupados por motos
+        if ((double) motosContador / MAX_ESPACIOS > 0.8) {
+            return false;
+        }
+
+        // Agregar el vehículo en el primer espacio disponible
+        espacios[ocupados] = vehiculo;
+        ocupados++;
+        return true;
+    }
+
+    // Método para retirar un vehículo por su matrícula
+    public boolean retirarVehiculo(String placa) {
+        for (int i = 0; i < ocupados; i++) {
+            if (espacios[i] != null && espacios[i].getPlaca().equals(placa)) { // != significa (no es igual a)
+                // Desplazar los vehículos hacia la izquierda para llenar el espacio vacío
+                for (int j = i; j < ocupados - 1; j++) {
+                    espacios[j] = espacios[j + 1];
                 }
+                espacios[ocupados - 1] = null; // Vaciar el último espacio
+                ocupados--;
+                return true;
             }
         }
-        return false; // No se pudo alquilar el espacio
+        return false;
     }
 
-    // Método para verificar si el garaje está completo
-    private boolean espaciosCompleto() {
-        for (Vehiculo v : espacios) {
-            if (v == null) {
-                return false; // Hay espacio disponible
-            }
-        }
-        return true; // No hay espacios disponibles
-    }
-
-    // Método para retirar un vehículo del garaje
-    public boolean retirarVehiculo(String matricula) {
-        for (int i = 0; i < NUM_ESPACIOS; i++) {
-            if (espacios[i] != null && espacios[i].getPlaca().equals(matricula)) {
-                espacios[i] = null; // Elimina el vehículo de la colección
-                return true; // Retiro exitoso
-            }
-        }
-        return false; // No se encontró el vehículo
-    }
-
-    // Método para calcular los ingresos mensuales de todos los vehículos en el
-    // garaje
-    @Override
+    // Método para calcular los ingresos mensuales
     public double calcularIngresos() {
-        double totalIngresos = 0.0;
-        for (Vehiculo v : espacios) {
-            if (v != null) { // Asegura que el vehículo no sea nulo
-                totalIngresos += v.getCuotaMesGaraje(); // Suma la cuota mensual de cada vehículo
+        double ingresos = 0;
+        for (int i = 0; i < ocupados; i++) {
+            if (espacios[i] != null) {
+                ingresos += espacios[i].getCuotaMesGaraje();
             }
         }
-        return totalIngresos; // Retorna el total de ingresos
+        return ingresos;
     }
 
     // Método para calcular la ocupación por tipo de vehículo
-    @Override
-    public int calcularOcupacionPorTipoVehiculo(Vehiculo v) {
+    public int calcularOcupacionPorTipoVehiculo(Class<? extends Vehiculo> tipo) { // el <? quiere decir que acepta
+                                                                                  // cualquier cosa de la clase vehiculo
         int count = 0;
-        for (Vehiculo espacio : espacios) {
-            if (espacio != null && espacio.getClass() == v.getClass()) { // Compara el tipo de vehículo
+        for (int i = 0; i < ocupados; i++) {
+            if (espacios[i] != null && espacios[i].getClass().equals(tipo)) {
                 count++;
             }
         }
-        return count; // Retorna la cantidad de vehículos del tipo especificado
+        return count;
     }
 
-    // Método para listar las matrículas y cuotas mensuales de los vehículos
-    public void listarVehiculos() {
-        for (Vehiculo v : espacios) {
-            if (v != null) { // Asegura que el vehículo no sea nulo
-                String tipo = v instanceof Moto ? "Moto" : "Auto"; // Determina el tipo de vehículo
-                System.out.println(
-                        "Matrícula: " + v.getPlaca() + ", Cuota Mensual: " + v.getCuotaMesGaraje() + ", Tipo: " + tipo);
-            }
-        }
+    // Método adicional para obtener el número de espacios ocupados
+    public int getOcupados() {
+        return ocupados;
     }
 }
