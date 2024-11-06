@@ -1,88 +1,64 @@
 package EjercicioParcial;
 
 public class Vehiculo {
-
-    private String Placa;
-    private String Marca;
-    private Double Precio;
-    private int Cilindraje;
-    private double ImpuestoCirculacion;
-    private double CuotaMesGaraje;
+    private String placa;
+    private String marca;
+    private double precio;
+    private int cilindraje;
+    private double impuestoCirculacion;
+    private double cuotaMesGaraje;
     private static final double CUOTA_BASE = 100;
 
-    public Vehiculo(int Cilindraje, String Marca, Double Precio) {
-        this.Cilindraje = Cilindraje;
-        this.Marca = Marca;
-        this.Precio = Precio;
-        this.CuotaMesGaraje = CUOTA_BASE;
+    public Vehiculo(String marca, double precio, int cilindraje) {
+        this.placa = null; // se inicia por defecto con valor null
+        this.marca = marca;
+        this.precio = precio;
+        this.cilindraje = cilindraje;
+        this.cuotaMesGaraje = CUOTA_BASE; // cuota mensual por defecto
+        calcularImpuestoCirculacion(); // calcular impuesto al crear el vehículo
     }
 
-    public Vehiculo(double ImpuestoCirculacion) {
-        this.ImpuestoCirculacion = ImpuestoCirculacion;
+    public double calcularImpuestoCirculacion() {
+        this.impuestoCirculacion = 0.02 * precio; // 2% del precio
+        return this.impuestoCirculacion;
     }
 
-    public boolean Vehiculo(String Placa) {
-        if (Placa.length() == 6) {
-            this.Placa = Placa;
+    public boolean matricular(String matricula) {
+        if (matricula.length() == 6) {
+            this.placa = matricula;
             return true;
         }
+        return false;
+    }
 
-        else {
-            return false;
+    public void setCuotaMesGaraje(double cuotaMesGaraje) {
+        if (cuotaMesGaraje >= 0) {
+            this.cuotaMesGaraje = cuotaMesGaraje;
         }
     }
 
-    public void calcularImpuestoCirculacion() {
-        this.ImpuestoCirculacion = 0.02 * this.Precio;
-    }
-
+    // Getters
     public String getPlaca() {
-        return Placa;
-    }
-
-    public void setPlaca(String Placa) {
-        this.Placa = Placa;
+        return placa;
     }
 
     public String getMarca() {
-        return Marca;
+        return marca;
     }
 
-    public void setMarca(String Marca) {
-        this.Marca = Marca;
-    }
-
-    public Double getPrecio() {
-        return Precio;
-    }
-
-    public void setPrecio(Double Precio) {
-        this.Precio = Precio;
+    public double getPrecio() {
+        return precio;
     }
 
     public int getCilindraje() {
-        return Cilindraje;
-    }
-
-    public void setCilindraje(int Cilindraje) {
-        this.Cilindraje = Cilindraje;
+        return cilindraje;
     }
 
     public double getImpuestoCirculacion() {
-        return ImpuestoCirculacion;
-    }
-
-    public void setImpuestoCirculacion(double ImpuestoCirculacion) {
-        this.ImpuestoCirculacion = ImpuestoCirculacion;
+        return impuestoCirculacion;
     }
 
     public double getCuotaMesGaraje() {
-        return CuotaMesGaraje;
+        return cuotaMesGaraje;
     }
-
-    public void setCuotaMesGaraje(double CuotaMesGaraje) {
-        if (CuotaMesGaraje >= 0)
-            this.CuotaMesGaraje = CuotaMesGaraje;
-    }
-
 }

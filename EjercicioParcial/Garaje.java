@@ -1,81 +1,79 @@
 package EjercicioParcial;
 
-public class Garaje {
-    private Vehiculo[] espacios;
-    private static final int MAX_ESPACIOS = 10; // Constante que define el número máximo de espacios
-    private int ocupados; // Contador de los espacios ocupados
+public class Garaje implements IGaraje {
+    private static final int NUM_ESPACIOS = 10; // Número máximo de espacios en el garaje
+    private final Vehiculo[] vehiculos; // Arreglo de vehículos en el garaje
+    private int contadorVehiculos; // Contador de vehículos ocupando espacios
 
-    // Constructor
     public Garaje() {
-        this.espacios = new Vehiculo[MAX_ESPACIOS];
-        this.ocupados = 0;
+        vehiculos = new Vehiculo[NUM_ESPACIOS]; // Inicializa el arreglo de vehículos
+        contadorVehiculos = 0; // Inicializa el contador de vehículos
     }
 
-    // Método para alquilar un espacio
+    // Método para alquilar un espacio para un vehículo
     public boolean alquilarEspacio(Vehiculo vehiculo) {
-        if (ocupados >= MAX_ESPACIOS || vehiculo.getPlaca() == null) {
-            return false; // No se pueden alquilar más espacios o si la matrícula es nula
+        if (vehiculo == null || vehiculo.getPlaca() == null) {
+            return false; // No se puede alquilar un espacio sin vehículo o matrícula
         }
 
-        int motosContador = 0;
-        for (int i = 0; i < ocupados; i++) {
-            if (espacios[i] instanceof Moto) {
-                motosContador++;
+        if (contadorVehiculos < NUM_ESPACIOS) {
+            int motosCount = calcularOcupacionPorTipoVehiculo(new Moto("", 0, 0, false)); // Contar motos
+            // Verifica que no haya más del 80% de plazas ocupadas por motos
+            if (motosCount < 0.8 * NUM_ESPACIOS || !(vehiculo instanceof Moto)) {
+                vehiculos[contadorVehiculos] = vehiculo; // Agrega el vehículo al arreglo
+                contadorVehiculos++; // Incrementa el contador de vehículos
+                return true; // Alquiler exitoso
             }
         }
-
-        // Comprobar que no haya más del 80% de los espacios ocupados por motos
-        if ((double) motosContador / MAX_ESPACIOS > 0.8) {
-            return false;
-        }
-
-        // Agregar el vehículo en el primer espacio disponible
-        espacios[ocupados] = vehiculo;
-        ocupados++;
-        return true;
+        return false; // No se pudo alquilar el espacio
     }
 
-    // Método para retirar un vehículo por su matrícula
-    public boolean retirarVehiculo(String placa) {
-        for (int i = 0; i < ocupados; i++) {
-            if (espacios[i] != null && espacios[i].getPlaca().equals(placa)) { // != significa (no es igual a)
-                // Desplazar los vehículos hacia la izquierda para llenar el espacio vacío
-                for (int j = i; j < ocupados - 1; j++) {
-                    espacios[j] = espacios[j + 1];
-                }
-                espacios[ocupados - 1] = null; // Vaciar el último espacio
-                ocupados--;
-                return true;
+    // Método para retirar un vehículo del garaje
+    public boolean retirarVehiculo(String matricula) {
+        for (int i = 0; i < contadorVehiculos; i++) {
+            if (vehiculos[i].getPlaca().equals(matricula)) {
+                // Mueve el último vehículo al lugar del vehículo que se retira
+                vehiculos[i] = vehiculos[contadorVehiculos - 1];
+                vehiculos[contadorVehiculos - 1] = null; // Limpia el último espacio
+                contadorVehiculos--; // Decrementa el contador de vehículos
+                return true; // Vehículo retirado exitosamente
             }
         }
-        return false;
+        return false; // Vehículo no encontrado
     }
 
-    // Método para calcular los ingresos mensuales
+    // Método para calcular los ingresos mensuales del garaje
     public double calcularIngresos() {
         double ingresos = 0;
-        for (int i = 0; i < ocupados; i++) {
-            if (espacios[i] != null) {
-                ingresos += espacios[i].getCuotaMesGaraje();
-            }
+        for (int i = 0; i < contadorVehiculos; i++) {
+            ingresos += vehiculos[i].getCuotaMesGaraje(); // Suma la cuota mensual de cada vehículo
         }
-        return ingresos;
+        return ingresos; // Retorna el total de ingresos
     }
 
     // Método para calcular la ocupación por tipo de vehículo
-    public int calcularOcupacionPorTipoVehiculo(Class<? extends Vehiculo> tipo) { // el <? quiere decir que acepta
-                                                                                  // cualquier cosa de la clase vehiculo
+    @Override
+    public int calcularOcupacionPorTipoVehiculo(Vehiculo v) {
         int count = 0;
-        for (int i = 0; i < ocupados; i++) {
-            if (espacios[i] != null && espacios[i].getClass().equals(tipo)) {
-                count++;
+        for (int i = 0; i < contadorVehiculos; i++) {
+            if (vehiculos[i].getClass() == v.getClass()) {
+                count++; // Incrementa el contador si es del mismo tipo
             }
         }
-        return count;
+        return count; // Retorna el número de vehículos del tipo especificado
     }
 
-    // Método adicional para obtener el número de espacios ocupados
-    public int getOcupados() {
-        return ocupados;
+    // Método para listar todos los vehículos en el garaje
+    public void listarVehiculos() {
+        for (int i = 0; i < contadorVehiculos; i++) {
+            String tipo = (vehiculos[i] instanceof Moto) ? "Moto" : "Auto"; // Determina el tipo de vehículo
+            System.out.println("Matrícula: " + vehiculos[i].getPlaca() + ", Cuota Mensual: "
+                    + vehiculos[i].getCuotaMesGaraje() + ", Tipo: " + tipo);
+        }
+    }
+
+    @Override
+    public double CalcularIngresos() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

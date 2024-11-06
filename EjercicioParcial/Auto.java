@@ -1,50 +1,28 @@
 package EjercicioParcial;
 
 public class Auto extends Vehiculo {
-
     private boolean tieneRadio;
     private boolean tieneNavegador;
 
-    // El atributo cuotaMesGarage se aumenta en 20 % si el cilindraje del auto es
-    // mayor de 2499
-    public Auto(boolean tieneNavegador, boolean tieneRadio, int Cilindraje, String Marca, Double Precio) {
-        super(Cilindraje, Marca, Precio);
-        this.tieneNavegador = tieneNavegador;
+    public Auto(String marca, double precio, int cilindraje, boolean tieneRadio, boolean tieneNavegador) {
+        super(marca, precio, cilindraje);
         this.tieneRadio = tieneRadio;
-        calcularImpuestoCirculacion();
-        if (Cilindraje > 2499) {
-            setCuotaMesGaraje(getCilindraje() * 1.2);
+        this.tieneNavegador = tieneNavegador;
+        calcularImpuestoCirculacion(); // calcular impuesto al crear el auto
+        if (cilindraje > 2499) {
+            setCuotaMesGaraje(getCuotaMesGaraje() * 1.2); // aumenta cuota en 20%
         }
-
     }
 
     @Override
-    public void calcularImpuestoCirculacion() {
-        super.calcularImpuestoCirculacion();
+    public double calcularImpuestoCirculacion() {
+        double impuestoBase = super.calcularImpuestoCirculacion();
         if (tieneRadio) {
-            setImpuestoCirculacion(getImpuestoCirculacion() * 1.01);
+            impuestoBase *= 1.01; // incrementa 1%
         }
         if (tieneNavegador) {
-            setImpuestoCirculacion(getImpuestoCirculacion() * 1.02);
-
+            impuestoBase *= 1.02; // incrementa 2%
         }
-
+        return impuestoBase;
     }
-
-    public boolean isTieneRadio() {
-        return tieneRadio;
-    }
-
-    public void setTieneRadio(boolean tieneRadio) {
-        this.tieneRadio = tieneRadio;
-    }
-
-    public boolean isTieneNavegador() {
-        return tieneNavegador;
-    }
-
-    public void setTieneNavegador(boolean tieneNavegador) {
-        this.tieneNavegador = tieneNavegador;
-    }
-
 }

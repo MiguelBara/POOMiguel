@@ -1,33 +1,23 @@
 package EjercicioParcial;
 
 public class Moto extends Vehiculo {
-
     private boolean tieneSidecar;
 
-    public Moto(boolean tieneSidecar, int Cilindraje, String Marca, Double Precio) {
-        super(Cilindraje, Marca, Precio);
+    public Moto(String marca, double precio, int cilindraje, boolean tieneSidecar) {
+        super(marca, precio, cilindraje);
         this.tieneSidecar = tieneSidecar;
-        calcularImpuestoCirculacion();
+        calcularImpuestoCirculacion(); // calcular impuesto al crear la moto
         if (tieneSidecar) {
-
-            setCuotaMesGaraje(getCuotaMesGaraje() * 1.5);
+            setCuotaMesGaraje(getCuotaMesGaraje() * 1.5); // aumenta cuota en 50%
         }
     }
 
     @Override
-    public void calcularImpuestoCirculacion() {
-        super.calcularImpuestoCirculacion();
+    public double calcularImpuestoCirculacion() {
+        double impuestoBase = super.calcularImpuestoCirculacion();
         if (tieneSidecar) {
-            setImpuestoCirculacion((getImpuestoCirculacion() * 1.1));
+            impuestoBase *= 1.1; // incrementa 10%
         }
+        return impuestoBase;
     }
-
-    public boolean isTieneSidecar() {
-        return tieneSidecar;
-    }
-
-    public void setTieneSidecar(boolean tieneSidecar) {
-        this.tieneSidecar = tieneSidecar;
-    }
-
 }
