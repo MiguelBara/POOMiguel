@@ -1,57 +1,49 @@
 package EjercicioParcial;
 
 public class Camioneta extends Vehiculo {
-    public enum TipoServicio { // tipo enumerado por eso el "enum"
-        SUV, Pickup, Carga, Otro
-    }
-
-    private TipoServicio tipoServicio;
+    private String tipoServicio; // SUV, Pickup, Carga, Otro
     private int numeroPasajeros;
     private boolean tieneRemolque;
 
-    public Camioneta(String marca, double precio, int cilindraje, TipoServicio tipoServicio, int numeroPasajeros,
+    public Camioneta(String marca, double precio, int cilindraje, String tipoServicio, int numeroPasajeros,
             boolean tieneRemolque) {
         super(marca, precio, cilindraje);
         this.tipoServicio = tipoServicio;
+        this.numeroPasajeros = validarPasajeros(tipoServicio, numeroPasajeros);
         this.tieneRemolque = tieneRemolque;
-
-        // Validación del número de pasajeros
-        if (tipoServicio == TipoServicio.Pickup || tipoServicio == TipoServicio.Carga) {
-            if (numeroPasajeros > 2) {
-                throw new IllegalArgumentException("El número de pasajeros para Pickup o Carga no puede ser más de 2.");
-            }
-        } else {
-            if (numeroPasajeros > 5) {
-                throw new IllegalArgumentException("El número de pasajeros no puede ser más de 5 para SUV u Otro.");
-            }
-        }
-        this.numeroPasajeros = numeroPasajeros;
-
-        calcularImpuestoCirculacion(); // calcular impuesto al crear la camioneta
-
-        // Ajustar cuota mensual del garaje
-        if (tipoServicio == TipoServicio.Pickup || tipoServicio == TipoServicio.Carga
-                || tipoServicio == TipoServicio.Otro) {
-            setCuotaMesGaraje(getCuotaMesGaraje() * 1.45); // aumenta cuota en 45%
-        } else if (tipoServicio == TipoServicio.SUV) {
-            setCuotaMesGaraje(getCuotaMesGaraje() * 1.10); // aumenta cuota en 10%
-        }
-
-        // Ajustar cuota mensual según el número de pasajeros
-        if (numeroPasajeros == 2) {
-            setCuotaMesGaraje(getCuotaMesGaraje() * 1.50); // 50% más si tiene 2 pasajeros
-        } else {
-            setCuotaMesGaraje(getCuotaMesGaraje() * 1.60); // 60% más si tiene más de 2 pasajeros
-        }
-
-        // Ajustar cuota si tiene remolque
-        if (tieneRemolque) {
-            setCuotaMesGaraje(getCuotaMesGaraje() * 1.10); // 10% más si tiene remolque
-        }
+        ajustarCuotaEImpuesto();
     }
 
-    @Override
-    public double calcularImpuestoCirculacion() {
-        return getPrecio() * 0.05; // 5% del precio
+    private int validarPasajeros(String tipoServicio, int numeroPasajeros) {
+        if ((tipoServicio.equalsIgnoreCase("Pickup") || tipoServicio.equalsIgnoreCase("Carga"))
+                && numeroPasajeros > 2) {
+            throw new IllegalArgumentException("Camionetas de tipo Pickup o Carga no pueden tener más de 2 pasajeros.");
+        }
+        if (numeroPasajeros > 5) {
+            throw new IllegalArgumentException("El número máximo de pasajeros permitido es 5.");
+        }
+        return numeroPasajeros;
+    }
+
+    private void ajustarCuotaEImpuesto() {
+        double cuotaExtra = 1.0;
+        if (tipoServicio.equalsIgnoreCase("SUV")) {
+            cuotaExtra += 0.1;
+        } else {
+            cuotaExtra += 0.45;
+        }
+
+        if (numeroPasajeros == 2) {
+            cuotaExtra += 0.5;
+        } else if (numeroPasajeros > 2) {
+            cuotaExtra += 0.6;
+        }
+
+        if (tieneRemolque) {
+            cuotaExtra += 0.1;
+        }
+
+        setCuotaMesGaraje(getCuotaMesGaraje() * cuotaExtra);
+        super.calcularImpuestoCirculacion();
     }
 }

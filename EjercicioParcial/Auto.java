@@ -8,22 +8,17 @@ public class Auto extends Vehiculo {
         super(marca, precio, cilindraje);
         this.tieneRadio = tieneRadio;
         this.tieneNavegador = tieneNavegador;
-        calcularImpuestoCirculacion(); // calcular impuesto al crear el auto
-        if (cilindraje > 2499) {
-            setCuotaMesGaraje(getCuotaMesGaraje() * 1.2); // aumenta cuota en 20%
-
-        }
+        ajustarCuotaEImpuesto(cilindraje);
     }
 
-    @Override
-    public double calcularImpuestoCirculacion() {
-        double impuestoBase = super.calcularImpuestoCirculacion();
-        if (tieneRadio) {
-            impuestoBase *= 1.01; // incrementa 1%
-        }
-        if (tieneNavegador) {
-            impuestoBase *= 1.02; // incrementa 2%
-        }
-        return impuestoBase;
+    private void ajustarCuotaEImpuesto(int cilindraje) {
+        double impuestoExtra = 0;
+        if (tieneRadio)
+            impuestoExtra += 0.01 * super.precio;
+        if (tieneNavegador)
+            impuestoExtra += 0.02 * super.precio;
+        super.calcularImpuestoCirculacion();
+        if (cilindraje > 2499)
+            setCuotaMesGaraje(getCuotaMesGaraje());
     }
 }

@@ -1,55 +1,63 @@
-
 package EjercicioParcial;
+
+import java.util.Scanner;
 
 public class PruebaGaraje {
     public static void main(String[] args) {
-        // Crear un garaje con capacidad para 10 vehículos
-        Garaje garaje = new Garaje(10);
+        Garaje garaje = new Garaje();
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
 
-        // Alquilar algunos vehículos
-        System.out.println("Alquilando vehículos:");
-        garaje.alquilarEspacio(new Moto("MOTO123"));
-        garaje.alquilarEspacio(new Auto("AUTO456"));
-        garaje.alquilarEspacio(new Camioneta("CAMIONETA789", Camioneta.TipoServicio.SUV));
-        garaje.alquilarEspacio(new Camioneta("CAMIONETA101", Camioneta.TipoServicio.Pickup));
-        garaje.alquilarEspacio(new Moto("MOTO234"));
-        System.out.println();
+        do {
+            System.out.println("\nMenú del Garaje");
+            System.out.println("1. Alquilar un espacio");
+            System.out.println("2. Retirar vehículo");
+            System.out.println("3. Consulta de ingresos mensuales");
+            System.out.println("4. Consulta proporción Autos / Motos / Camionetas");
+            System.out.println("5. Listado de matrículas y cuota mensual y tipo vehículo");
+            System.out.println("6. Buscar vehículo por matrícula");
+            System.out.println("7. Informe de camionetas por tipo");
+            System.out.println("0. Salir");
+            System.out.print("Seleccione una opción: ");
+            opcion = scanner.nextInt();
 
-        // Buscar un vehículo
-        System.out.println("Buscando vehículo con matrícula 'AUTO456':");
-        int posicion = garaje.buscarVehiculo("AUTO456");
-        if (posicion != -99) {
-            System.out.println("Vehículo encontrado en la posición: " + posicion);
-        } else {
-            System.out.println("Vehículo no encontrado.");
-        }
-        System.out.println();
+            switch (opcion) {
+                case 1:
+                    // Código para alquilar un espacio
+                    break;
+                case 2:
+                    // Código para retirar un vehículo
+                    break;
+                case 3:
+                    System.out.println("Ingresos mensuales: " + garaje.calcularIngresos());
+                    break;
+                case 4:
+                    // Código para calcular proporción Autos / Motos / Camionetas
+                    break;
+                case 5:
+                    // Código para listar matrículas y cuotas
+                    break;
+                case 6:
+                    System.out.print("Ingrese matrícula a buscar: ");
+                    String matricula = scanner.next();
+                    int posicion = garaje.buscarVehiculoPorMatricula(matricula);
+                    if (posicion == -99) {
+                        System.out.println("Vehículo no encontrado.");
+                    } else {
+                        System.out.println("Vehículo encontrado en la posición: " + posicion);
+                    }
+                    break;
+                case 7:
+                    // Código para informar sobre camionetas por tipo
+                    break;
+                case 0:
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        } while (opcion != 0);
 
-        // Contar vehículos por tipo
-        System.out.println("Contando vehículos:");
-        System.out.println("Cantidad de Motos: " + garaje.contarVehiculosPorTipo(Moto.class));
-        System.out.println("Cantidad de Autos: " + garaje.contarVehiculosPorTipo(Auto.class));
-        System.out.println("Cantidad de Camionetas: " + garaje.contarVehiculosPorTipo(Camioneta.class));
-        System.out.println();
-
-        // Calcular proporción de vehículos
-        System.out.println("Calculando proporción de vehículos:");
-        garaje.calcularProporcion();
-        System.out.println();
-
-        // Informar camionetas por tipo
-        System.out.println("Informando camionetas por tipo:");
-        garaje.informarCamionetasPorTipo();
-        System.out.println();
-
-        // Intentar alquilar más vehículos para probar las restricciones
-        System.out.println("Intentando alquilar más vehículos:");
-        garaje.alquilarEspacio(new Camioneta("CAMIONETA111", Camioneta.TipoServicio.Carga));
-        garaje.alquilarEspacio(new Moto("MOTO345")); // Esto puede fallar si ya se alcanzó el 30% de motos
-        System.out.println();
-
-        // Mostrar el menú para más interacciones
-        System.out.println("Iniciando menú interactivo:");
-        garaje.mostrarMenu();
+        scanner.close();
     }
 }

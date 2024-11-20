@@ -6,18 +6,14 @@ public class Moto extends Vehiculo {
     public Moto(String marca, double precio, int cilindraje, boolean tieneSidecar) {
         super(marca, precio, cilindraje);
         this.tieneSidecar = tieneSidecar;
-        calcularImpuestoCirculacion(); // calcular impuesto al crear la moto
-        if (tieneSidecar) {
-            setCuotaMesGaraje(getCuotaMesGaraje() * 1.5); // aumenta cuota en 50%
-        }
+        ajustarCuotaEImpuesto();
     }
 
-    @Override
-    public double calcularImpuestoCirculacion() {
-        double impuestoBase = super.calcularImpuestoCirculacion();
+    private void ajustarCuotaEImpuesto() {
         if (tieneSidecar) {
-            impuestoBase *= 1.1; // incrementa 10%
+            setCuotaMesGaraje(getCuotaMesGaraje() * 1.5);
+            calcularImpuestoCirculacion();
+            setCuotaMesGaraje(getCuotaMesGaraje());
         }
-        return impuestoBase;
     }
 }
