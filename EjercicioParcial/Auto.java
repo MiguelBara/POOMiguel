@@ -11,6 +11,7 @@ public class Auto extends Vehiculo {
         calcularImpuestoCirculacion(); // calcular impuesto al crear el auto
         if (cilindraje > 2499) {
             setCuotaMesGaraje(getCuotaMesGaraje() * 1.2); // aumenta cuota en 20%
+
         }
     }
 
