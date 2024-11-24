@@ -1,9 +1,7 @@
 package Prueba;
 
-import excepciones.*;
 import Garajes.*;
 import Vehiculos.*;
-
 import java.util.Scanner;
 
 public class Main {
@@ -14,9 +12,9 @@ public class Main {
 
         // Crear un garaje como ejemplo
         Garaje garaje = new Garaje(
-            "Cundinamarca", "Bogota", "Calle 123 #45-67",
-            "3201234567", "admin@garaje.com", "Juan Perez",
-            50 // Número de espacios
+                "Cundinamarca", "Bogota", "Calle 123 #45-67",
+                "3201234567", "admin@garaje.com", "Juan Perez",
+                50 // Número de espacios
         );
 
         int opcion;
@@ -84,21 +82,19 @@ public class Main {
                     throw new Exception("No se pueden alquilar más espacios para motos (máximo 20% del total).");
                 }
                 vehiculo = new Moto(
-                    leerCadena("Ingrese la marca: "),
-                    leerDouble("Ingrese el precio: "),
-                    leerEntero("Ingrese el cilindraje: "),
-                    leerBooleano("¿Tiene sidecar? (true/false): ")
-                );
+                        leerCadena("Ingrese la marca: "),
+                        leerDouble("Ingrese el precio: "),
+                        leerEntero("Ingrese el cilindraje: "),
+                        leerBooleano("¿Tiene sidecar? (true/false): "));
                 break;
 
             case "auto":
                 vehiculo = new Auto(
-                    leerCadena("Ingrese la marca: "),
-                    leerDouble("Ingrese el precio: "),
-                    leerEntero("Ingrese el cilindraje: "),
-                    leerBooleano("¿Tiene radio? (true/false): "),
-                    leerBooleano("¿Tiene navegador? (true/false): ")
-                );
+                        leerCadena("Ingrese la marca: "),
+                        leerDouble("Ingrese el precio: "),
+                        leerEntero("Ingrese el cilindraje: "),
+                        leerBooleano("¿Tiene radio? (true/false): "),
+                        leerBooleano("¿Tiene navegador? (true/false): "));
                 break;
 
             case "camioneta":
@@ -106,13 +102,12 @@ public class Main {
                     throw new Exception("No se pueden alquilar mas espacios para camionetas (máximo 20% del total).");
                 }
                 vehiculo = new Camioneta(
-                    leerCadena("Ingrese la marca: "),
-                    leerDouble("Ingrese el precio: "),
-                    leerEntero("Ingrese el cilindraje: "),
-                    leerCadena("Ingrese el tipo de servicio (SUV, Pickup, Carga, Otro): "),
-                    leerEntero("Ingrese el numero de pasajeros: "),
-                    leerBooleano("¿Tiene remolque? (true/false): ")
-                );
+                        leerCadena("Ingrese la marca: "),
+                        leerDouble("Ingrese el precio: "),
+                        leerEntero("Ingrese el cilindraje: "),
+                        leerCadena("Ingrese el tipo de servicio (SUV, Pickup, Carga, Otro): "),
+                        leerEntero("Ingrese el numero de pasajeros: "),
+                        leerBooleano("¿Tiene remolque? (true/false): "));
                 break;
 
             default:
@@ -160,7 +155,8 @@ public class Main {
         if (garaje.obtenerOcupacionActual() == 0) {
             System.out.println("No hay vehiculos registrados.");
         } else {
-            garaje.getVehiculos().forEach(v -> System.out.println("Placa: " + v.getPlaca() + ", Cuota: $" + v.getCuotaMesGaraje() + ", Tipo: " + v.getClass().getSimpleName()));
+            garaje.getVehiculos().forEach(v -> System.out.println("Placa: " + v.getPlaca() + ", Cuota: $"
+                    + v.getCuotaMesGaraje() + ", Tipo: " + v.getClass().getSimpleName()));
         }
     }
 
@@ -171,7 +167,8 @@ public class Main {
         if (vehiculo == null) {
             System.out.println("El vehiculo no esta registrado.");
         } else {
-            System.out.println("Vehiculo encontrado: " + vehiculo.getClass().getSimpleName() + ", Placa: " + vehiculo.getPlaca());
+            System.out.println(
+                    "Vehiculo encontrado: " + vehiculo.getClass().getSimpleName() + ", Placa: " + vehiculo.getPlaca());
         }
     }
 
