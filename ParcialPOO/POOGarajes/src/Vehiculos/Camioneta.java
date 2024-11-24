@@ -2,11 +2,12 @@
 package Vehiculos;
 
 public class Camioneta extends Vehiculo {
-    private String tipoServicio; // SUV, Pickup, Carga, Otro
+    private String tipoServicio; // SUV, Pickup, Carga, otro
     private int numeroPasajeros;
     private boolean tieneRemolque;
 
-    public Camioneta(String marca, double precio, int cilindraje, String tipoServicio, int numeroPasajeros, boolean tieneRemolque) {
+    public Camioneta(String marca, double precio, int cilindraje, String tipoServicio, int numeroPasajeros,
+            boolean tieneRemolque) {
         super(marca, precio, cilindraje);
         this.tipoServicio = tipoServicio;
         this.numeroPasajeros = numeroPasajeros;
@@ -14,7 +15,8 @@ public class Camioneta extends Vehiculo {
 
         validarNumeroPasajeros();
 
-        if (tipoServicio.equalsIgnoreCase("Pickup") || tipoServicio.equalsIgnoreCase("Carga") || tipoServicio.equalsIgnoreCase("Otro")) {
+        if (tipoServicio.equalsIgnoreCase("Pickup") || tipoServicio.equalsIgnoreCase("Carga")
+                || tipoServicio.equalsIgnoreCase("Otro")) {
             this.cuotaMesGaraje += CUOTA_BASE * 0.45;
         } else if (tipoServicio.equalsIgnoreCase("SUV")) {
             this.cuotaMesGaraje += CUOTA_BASE * 0.10;
@@ -34,8 +36,10 @@ public class Camioneta extends Vehiculo {
     }
 
     private void validarNumeroPasajeros() {
-        if ((tipoServicio.equalsIgnoreCase("Pickup") || tipoServicio.equalsIgnoreCase("Carga")) && numeroPasajeros > 2) {
-            throw new IllegalArgumentException("Las camionetas de tipo Pickup y Carga no pueden tener más de 2 pasajeros.");
+        if ((tipoServicio.equalsIgnoreCase("Pickup") || tipoServicio.equalsIgnoreCase("Carga"))
+                && numeroPasajeros > 2) {
+            throw new IllegalArgumentException(
+                    "Las camionetas de tipo Pickup y Carga no pueden tener más de 2 pasajeros.");
         } else if (numeroPasajeros > 5) {
             throw new IllegalArgumentException("El número máximo de pasajeros es 5.");
         }
